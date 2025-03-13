@@ -1,11 +1,11 @@
-function Alltime () {
+function History() {
 
     return (
-        <div className="w-full bg-white rounded-lg shadow-sm p-4 md:p-6">
+      <div className=" bg-white rounded-lg shadow-sm p-4 md:p-6 h-full">
         {/* Header */}
         <div className="flex justify-between mb-3">
           <div className="flex justify-center items-center">
-            <h5 className="text-xl font-bold leading-none text-gray-900">All time</h5>
+            <h5 className="text-xl font-bold leading-none text-gray-900">Mood history</h5>
           </div>
         </div>
   
@@ -15,4 +15,4 @@ function Alltime () {
     );
   }
   
-  export default Alltime;
+  export default History;

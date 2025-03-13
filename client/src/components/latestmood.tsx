@@ -10,9 +10,9 @@ function LatestMood () {
 //   }, []);
 
   return (
-    <div>
+    <div className="w-full">
         
-        <a href="#" className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow-sm md:flex-row md:max-w-xl white:border-gray-700">
+        <a href="#" className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow-sm w-full">
             <img className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="/docs/images/blog/image-4.jpg" alt="" />
             <div className="flex flex-col justify-between p-4 leading-normal">
                 <span className="w-fit bg-teal-100 text-teal-800 text-xs font-medium mb-3 px-2.5 py-0.5 rounded-full">Default</span>
