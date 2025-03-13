@@ -1,13 +1,19 @@
 import Sidebar from '../components/sidebar'
+import LatestMood from '../components/latestmood';
 
 function Dashboard() {
   
 
     return (
       <>
-        <div>
-            <Sidebar />
-        </div>
+        <main>
+            <div>
+                <Sidebar />
+            </div>
+            <div className='p-4 sm:ml-64'>
+                <LatestMood />
+            </div>
+        </main>
       </>
     )
   }
