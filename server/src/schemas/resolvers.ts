@@ -1,4 +1,4 @@
-import models from "../models/index.js";
+import User from "../models/index.js";
 import { AuthenticationError } from 'apollo-server-express';
 import jwt from 'jsonwebtoken';
 

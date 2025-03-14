@@ -3,4 +3,4 @@ import Password from './Password.js';
 import Feelings_User from './Feelings_user.js';
 import Feelings_Catalog from './Feelings_catalog.js'
 
-export { User, Password, Feelings_User, Feelings_Catalog };
+export default { User, Password, Feelings_User, Feelings_Catalog };
