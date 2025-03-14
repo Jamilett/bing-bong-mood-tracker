@@ -1,6 +1,8 @@
 import express from "express";
+import cors from "cors";
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
+import { quoteResolvers, quoteTypeDefs } from "./schemas/quoteSchema";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 
@@ -8,40 +10,30 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
+app.use(cors());
 
 // Conectar a MongoDB
 // mongoose
 //   .connect(process.env.MONGO_URI as string)
-//   .then(() => console.log("✅ Connected to MongoDB"))
-//   .catch((error) => console.error("❌ MongoDB Connection Error:", error));
+//   .then(() => console.log("Connected to MongoDB"))
+//   .catch((error) => console.error("MongoDB Connection Error:", error));
 
-// Definir esquema GraphQL (Ejemplo simple)
-const typeDefs = `#graphql
-  type Query {
-    hello: String
-  }
-`;
-
-// Definir resolvers
-const resolvers = {
-  Query: {
-    hello: () => "Hello, GraphQL with Apollo Server!",
-  },
-};
-
-// Crear servidor Apollo
-const server = new ApolloServer({ typeDefs, resolvers });
+// Create apolllo server
+const server = new ApolloServer({
+  typeDefs: [quoteTypeDefs],
+  resolvers: [quoteResolvers],
+});
 
 async function startServer() {
   await server.start();
   app.use("/graphql", express.json(), expressMiddleware(server));
 
-  // Iniciar servidor
+  // Init serrver
   const PORT = process.env.PORT || 4000;
   app.listen(PORT, () => {
     console.log(`🚀 Server running at http://localhost:${PORT}/graphql`);
   });
 }
 
-// Arrancar servidor
+// Start the server
 startServer();
