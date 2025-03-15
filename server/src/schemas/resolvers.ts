@@ -1,4 +1,4 @@
-import models from "../models/index.js";
+import * as models from "../models/index.js";
 import { AuthenticationError } from 'apollo-server-express';
 import jwt from 'jsonwebtoken';
 
@@ -6,8 +6,9 @@ import jwt from 'jsonwebtoken';
 export interface User {
   _id: any;
   email: string;
-  password: string;
+  password: any; // Changed from string to any to accommodate ObjectId
   savedMoods?: any[];
+  isCorrectPassword(password: string): Promise<boolean>;
 }
 
 interface MoodInput {
@@ -42,7 +43,7 @@ const resolvers = {
   Mutation: {
     addUser: async (_parent: unknown, { input }: { input: UserInput }) => {
       try {
-        const user = await models.User.create(input) as User;
+        const user = await models.User.create(input) as unknown as User;
         const token = signToken(user);
         return { token, user };
       } catch (error) {
@@ -60,8 +61,7 @@ const resolvers = {
       
       // This should be replaced with proper password comparison
       // using bcrypt or similar library
-      const correctPw = await models.User.isCorrectPassword(password);
-      
+      const correctPw = await user.isCorrectPassword(password);      
       if (!correctPw) {
         throw new AuthenticationError('Incorrect credentials');
       }

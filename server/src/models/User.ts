@@ -1,10 +1,12 @@
-import { Schema, model, Document, ObjectId } from 'mongoose';
+import { Schema, model, Document, Types } from 'mongoose'; // Assuming you're using Mongoose
+import bcrypt from 'bcrypt';
 
 interface IUser extends Document {
     username: string;
     email: string;
-    password: ObjectId;
-    feelings: ObjectId[];
+    password: string;
+    feelings: Types.ObjectId[];
+    isCorrectPassword(password: string): Promise<boolean>;
 }
 
 // Schema to create User model
@@ -22,8 +24,8 @@ const userSchema = new Schema<IUser>(
             //TODO: check for valid mail
         },
         password:{
-                type: Schema.Types.ObjectId,
-                ref: 'password',
+                type: String,
+                required: true,
             },
         feelings: [
             {
@@ -40,16 +42,12 @@ const userSchema = new Schema<IUser>(
     }
 );
 
-//** Create a virtual property `fullName` that gets and sets the user's full name
-// userSchema
- //   .virtual('friendCount')
-    // Getter
-   // .get(function () {
-    //    return `${this.friends.length}`;
-   // })
-// */
-   
+// Add the password checking method
+userSchema.methods.isCorrectPassword = async function(password: string): Promise<boolean> {
+    return bcrypt.compare(password, this.password);
+};
+
 // Initialize our User model
-const User = model('user', userSchema);
+const User = model<IUser>('User', userSchema);
 
 export default User;

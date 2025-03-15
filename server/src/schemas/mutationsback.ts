@@ -33,7 +33,7 @@ const mutations = {
       throw new Error('User not found');
     }
 
-    const validPassword = await bcrypt.compare(password, user.password);
+    const validPassword = await bcrypt.compare(password, user.password.toString());
     if (!validPassword) {
       throw new Error('Incorrect password');
     }
