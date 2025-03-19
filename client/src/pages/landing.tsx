@@ -1,8 +1,9 @@
 import logo from '../assets/BingBongLogo.svg';
 import dashboard from '../assets/DashboardMockup.png';
+import { useNavigate } from 'react-router-dom';
 
 function Landing() {
-  
+    const navigate = useNavigate();
 
     return (
       <>
@@ -11,13 +12,13 @@ function Landing() {
         <header>
     <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 light:bg-gray-800">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-            <a href="https://flowbite.com" className="flex items-center">
+            <a onClick={() => navigate('/landing')} className="flex items-center hover:cursor-pointer">
                 <img src={logo} className="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
                 <span className="self-center text-xl font-semibold whitespace-nowrap light:text-white">BingBong</span>
             </a>
             <div className="flex items-center lg:order-2">
-                <a href="#" className="text-gray-800 light:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 light:hover:bg-gray-700 focus:outline-none light:focus:ring-gray-800">Log in</a>
-                <a href="#" className="text-white bg-purple-600 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 light:bg-primary-600 light:hover:bg-primary-700 focus:outline-none light:focus:ring-primary-800">Get started</a>
+                <a href="#" onClick={() => navigate('/login')} className="text-gray-800 light:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 light:hover:bg-gray-700 focus:outline-none light:focus:ring-gray-800">Log in</a>
+                <a href="#" onClick={() => navigate('/signup')} className="text-white bg-purple-600 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 light:bg-primary-600 light:hover:bg-primary-700 focus:outline-none light:focus:ring-primary-800">Get started</a>
             </div>
         </div>
     </nav>
@@ -26,9 +27,9 @@ function Landing() {
         <section className="bg-purple-50 light:bg-purple-50">
     <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
         <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl lg:text-6xl light:text-white text-transparent bg-clip-text bg-gradient-to-r to-pink-600 from-purple-400">Track Your Mood, Discover Your Patterns</h1>
-        <p className="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 light:text-gray-400">“Log your daily emotions, write your private journal, and gain insights into your well-being over time.</p>
+        <p className="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 light:text-gray-400">Log your daily emotions, write your private journal, and gain insights into your well-being over time.</p>
         <div className="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
-            <a href="#" className="gap-3 inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white bg-purple-600 rounded-lg hover:bg-purple-800 focus:ring-4 focus:ring-purple-100 light:text-white light:border-gray-700 light:hover:bg-gray-700 light:focus:ring-gray-800">
+            <a href="#" onClick={() => navigate('/signup')} className="gap-3 inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white bg-purple-600 rounded-lg hover:bg-purple-800 focus:ring-4 focus:ring-purple-100 light:text-white light:border-gray-700 light:hover:bg-gray-700 light:focus:ring-gray-800">
                 Sign up
                 <svg className="mr-2 -ml-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"></path></svg>          
             </a>  
@@ -42,7 +43,7 @@ function Landing() {
         <div className="mt-4 md:mt-0">
             <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-purple-600 light:text-white">Gain real insights of your mood</h2>
             <p className="mb-6 font-light text-gray-500 md:text-lg light:text-gray-400">Your personal dashboard gives you a full view of your emotional patterns. Keep track of your moods and discover trends over time.</p>
-            <a href="#" className="gap-3 inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white bg-purple-600 rounded-lg hover:bg-purple-800 focus:ring-4 focus:ring-purple-100 light:text-white light:border-gray-700 light:hover:bg-gray-700 light:focus:ring-gray-800">
+            <a href="#" onClick={() => navigate('/signup')} className="gap-3 inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white bg-purple-600 rounded-lg hover:bg-purple-800 focus:ring-4 focus:ring-purple-100 light:text-white light:border-gray-700 light:hover:bg-gray-700 light:focus:ring-gray-800">
                 Try now
                 <svg className="mr-2 -ml-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"></path></svg>          
             </a>  
@@ -91,7 +92,7 @@ function Landing() {
         <h2 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-4xl lg:text-5xl light:text-white">Free... Forever!</h2>
         <p className="mb-8 text-lg font-normal text-gray-200 lg:text-xl sm:px-16 lg:px-48 light:text-gray-400">Join BingBong for free and take the first step toward emotional well-being.</p>
         <div className="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
-            <a href="#" className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-purple-600 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 light:focus:ring-blue-900">
+            <a href="#" onClick={() => navigate('/signup')} className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-purple-600 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 light:focus:ring-blue-900">
                 Get started
                 <svg className="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
@@ -106,12 +107,12 @@ function Landing() {
   <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
       <div className="mx-auto mb-8 max-w-screen-sm lg:mb-16">
           <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 light:text-white">Our team</h2>
-          <p className="font-light text-gray-500 sm:text-xl light:text-gray-400">Explore the whole collection of open-source web components and elements built with the utility classes from Tailwind</p>
+          <p className="font-light text-gray-500 sm:text-xl light:text-gray-400">Meet the talent behind the curtain.</p>
       </div> 
       <div className="grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           <div className="text-center text-gray-500 light:text-gray-400">
               <img className="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="Bonnie Avatar"/>
-              <h3 className="mb-1 text-2xl font-bold tracking-tight text-gray-900 light:text-white">
+              <h3 className="mb-1 text-2xl font-bold tracking-tight text-purple-600 light:text-white">
                   <a href="#">Mike Aliaga</a>
               </h3>
               <p>UX/UI, Front end Dev </p>
@@ -125,7 +126,7 @@ function Landing() {
           </div>
           <div className="text-center text-gray-500 light:text-gray-400">
               <img className="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="Bonnie Avatar"/>
-              <h3 className="mb-1 text-2xl font-bold tracking-tight text-gray-900 light:text-white">
+              <h3 className="mb-1 text-2xl font-bold tracking-tight text-purple-600 light:text-white">
                   <a href="#">Alessandro</a>
               </h3>
               <p>Front end Dev </p>
@@ -139,7 +140,7 @@ function Landing() {
           </div>
           <div className="text-center text-gray-500 light:text-gray-400">
               <img className="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="Bonnie Avatar"/>
-              <h3 className="mb-1 text-2xl font-bold tracking-tight text-gray-900 light:text-white">
+              <h3 className="mb-1 text-2xl font-bold tracking-tight text-purple-600 light:text-white">
                   <a href="#">Carlos Malpica</a>
               </h3>
               <p>Front end Dev </p>
@@ -153,7 +154,7 @@ function Landing() {
           </div>
           <div className="text-center text-gray-500 light:text-gray-400">
               <img className="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="Bonnie Avatar"/>
-              <h3 className="mb-1 text-2xl font-bold tracking-tight text-gray-900 light:text-white">
+              <h3 className="mb-1 text-2xl font-bold tracking-tight text-purple-600 light:text-white">
                   <a href="#">Jam</a>
               </h3>
               <p>Back end Dev </p>
@@ -167,7 +168,7 @@ function Landing() {
           </div>
           <div className="text-center text-gray-500 light:text-gray-400">
               <img className="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="Bonnie Avatar"/>
-              <h3 className="mb-1 text-2xl font-bold tracking-tight text-gray-900 light:text-white">
+              <h3 className="mb-1 text-2xl font-bold tracking-tight text-purple-600 light:text-white">
                   <a href="#">Fabian</a>
               </h3>
               <p>Back end Dev </p>
@@ -181,7 +182,7 @@ function Landing() {
           </div>
           <div className="text-center text-gray-500 light:text-gray-400">
               <img className="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="Bonnie Avatar"/>
-              <h3 className="mb-1 text-2xl font-bold tracking-tight text-gray-900 light:text-white">
+              <h3 className="mb-1 text-2xl font-bold tracking-tight text-purple-600 light:text-white">
                   <a href="#">Alberto</a>
               </h3>
               <p>Back end Dev </p>
@@ -195,7 +196,7 @@ function Landing() {
           </div>
           <div className="text-center text-gray-500 light:text-gray-400">
               <img className="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="Bonnie Avatar"/>
-              <h3 className="mb-1 text-2xl font-bold tracking-tight text-gray-900 light:text-white">
+              <h3 className="mb-1 text-2xl font-bold tracking-tight text-purple-600 light:text-white">
                   <a href="#">Gerardo</a>
               </h3>
               <p>Back end Dev </p>

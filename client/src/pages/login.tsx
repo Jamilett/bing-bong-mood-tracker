@@ -1,14 +1,17 @@
 import BingBongImage from "../assets/bingbongimage.png";
 import BingBongLogo from "../assets/BingBongLogo.svg";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
+
   return (
     <section className="bg-purple-50 h-screen flex items-center justify-center">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-center md:justify-between px-6">
         
         {/* Formulario */}
         <div className="w-full md:w-1/2 flex flex-col items-center">
-          <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900">
+          <a href="#" onClick={() => navigate('/landing')} className="flex items-center mb-6 text-2xl font-semibold text-gray-900">
             <img className="w-10 h-10 mr-2" src={BingBongLogo} alt="logo" />
             BingBong
           </a>
@@ -49,14 +52,14 @@ function Login() {
 
               <button
                 type="submit"
-                className="w-full text-white bg-purple-600 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                className="w-full text-white bg-purple-600 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:cursor-pointer"
               >
                 Log in!
               </button>
               
               <p className="text-sm font-light text-gray-500 text-center">
                 Don’t have an account?{" "}
-                <a href="#" className="font-medium text-purple-600 hover:underline">
+                <a href="#" onClick={() => navigate('/signup')} className="font-medium text-purple-600 hover:underline hover:cursor-pointer">
                   Sign up here
                 </a>
               </p>
@@ -65,7 +68,7 @@ function Login() {
         </div>
 
         {/* Imagen del personaje - Solo en desktop */}
-        <div className="hidden md:flex md:w-1/2 justify-center">
+        <div className="hidden md:flex md:w-1/2 justify-center hover:animate-bounce">
           <img src={BingBongImage} alt="Bing Bong" className="w-3/4 max-w-lg" />
         </div>
       </div>

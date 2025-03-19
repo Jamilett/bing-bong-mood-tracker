@@ -1,11 +1,14 @@
 import logo from '../assets/BingBongLogo.svg';
+import { useNavigate } from 'react-router-dom';
 
 function Signup() {
+    const navigate = useNavigate();
+
     return (
       <div>
         <section className="bg-purple-50">
           <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen md:h-screen lg:py-0">
-            <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 ">
+            <a href="#" onClick={() => navigate('/landing')} className="flex items-center mb-6 text-2xl font-semibold text-gray-900 ">
               <img className="w-8 h-8 mr-2" src={logo} alt="logo" />
               BingBong
             </a>
@@ -44,13 +47,13 @@ function Signup() {
 
                   <button
                     type="submit"
-                    className="w-full text-white bg-purple-600 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                    className="w-full text-white bg-purple-600 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:cursor-pointer"
                   >
                     Create account
                   </button>
                   <p className="text-sm font-light text-gray-500 ">
                     Already have an account?{" "}
-                    <a href="#" className="font-medium text-purple-600 hover:underline ">
+                    <a href="#" onClick={() => navigate('/login')} className="font-medium text-purple-600 hover:underline hover:cursor-pointer">
                       Sign in
                     </a>
                   </p>
