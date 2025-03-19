@@ -4,7 +4,7 @@ function MoodCounter() {
     { name: "Angry", count: 21, color: "bg-red-50 text-red-400", circle: "bg-red-100 text-red-500" },
     { name: "Anxious", count: 21, color: "bg-indigo-50 text-indigo-400", circle: "bg-indigo-100 text-indigo-500" },
     { name: "Sad", count: 21, color: "bg-blue-50 text-blue-400", circle: "bg-blue-100 text-blue-500" },
-    { name: "Relaxed", count: 21, color: "bg-purple-50 text-purple-400", circle: "bg-purple-100 text-purple-500" },
+    { name: "Fear", count: 21, color: "bg-purple-50 text-purple-400", circle: "bg-purple-100 text-purple-500" },
   ];
 
   return (

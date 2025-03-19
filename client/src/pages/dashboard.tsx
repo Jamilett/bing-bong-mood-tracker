@@ -16,6 +16,9 @@ function Dashboard() {
                 <Sidebar />
             </div>
             <section className='flex flex-col p-4 gap-4'>
+                <div>
+                    <h2 className='sm:ml-64 flex text-2xl font-bold text-gray-900'>Dashboard</h2>
+                </div>
                 <div className='sm:ml-64 flex gap-4'>
                     <Sevendays />
                     <Month />
