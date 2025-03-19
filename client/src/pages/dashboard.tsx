@@ -7,10 +7,10 @@ import MoodCounter from '../components/moodcounter';
 import History from '../components/history';
 
 function Dashboard() {
-  
+
 
     return (
-      <>
+        <>
         <main className='bg-purple-50 min-h-screen'>
             <div>
                 <Sidebar />
@@ -21,7 +21,7 @@ function Dashboard() {
                     <Month />
                     <Alltime />
                 </div>
-                <div className='sm:ml-64 flex gap-4'>
+                <div className="sm:ml-64 grid grid-cols-1 md:grid-cols-2 gap-6">
                     <MoodCounter />
                     <LatestMood />
                 </div>
@@ -30,9 +30,8 @@ function Dashboard() {
                 </div>
             </section>
         </main>
-      </>
+        </>
     )
-  }
-  
-  export default Dashboard;
-  
+}
+
+export default Dashboard;
