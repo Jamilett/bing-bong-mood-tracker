@@ -3,6 +3,8 @@ import { Schema, model, Document, ObjectId } from 'mongoose';
 interface IFeelings_catalog extends Document {
     feeling: string;
     feeling_name: string;
+    createdAt: Date;
+    comment: string;
 }
 
 // Schema to create User model
@@ -17,6 +19,14 @@ const feelingsCatalogSchema = new Schema<IFeelings_catalog>(
             type: String,
             unique: true,
             required: true,
+        },
+        createdAt: {
+            type: Date,
+            default: Date.now,
+        },
+        comment: {
+            type: String,
+            maxlength: 280,
         },
     }
 );

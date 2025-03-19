@@ -1,21 +1,18 @@
-import User from "../models/index.js";
-import { AuthenticationError } from 'apollo-server-express';
-import jwt from 'jsonwebtoken';
-
+import {User} from "../models/index.js";
+import { signToken } from "../utils/index.js";
 // Define interfaces for TypeScript type safety
 export interface User {
   _id: any;
   email: string;
   password: string;
   savedMoods?: any[];
+  isCorrectPassword: (password: string) => Promise<boolean>;
 }
-
 interface MoodInput {
   thoughtText: string;
   title: string;
   description: string;
 }
-
 interface UserInput {
   email: string;
   password: string;
@@ -33,16 +30,17 @@ const resolvers = {
   Query: {
     me: async (_parent: unknown, _args: unknown, context: AuthContext) => {
       if (context.user) {
-        return models.User.findById(context.user._id);
+        return User.findById(context.user._id);
       }
-      throw new AuthenticationError('Not logged in');
+      throw new Error('Not logged in');
     }
   },
   
   Mutation: {
     addUser: async (_parent: unknown, { input }: { input: UserInput }) => {
+      console.log("input: ", input);
       try {
-        const user = await models.User.create(input) as User;
+        const user = await User.create(input) as User;
         const token = signToken(user);
         return { token, user };
       } catch (error) {
@@ -52,18 +50,21 @@ const resolvers = {
     },
     
     login: async (_parent: unknown, { email, password }: { email: string, password: string }) => {
-      const user = await models.User.findOne({ email }) as User;
+      console.log("Incoming data: ", email, password);
+      const user = await User.findOne({ email }) as User;
       
       if (!user) {
-        throw new AuthenticationError('Incorrect credentials');
+        console.log("no user found");
+        throw new Error('Incorrect credentials');
       }
-      
+      console.log("User found: ", user);
       // This should be replaced with proper password comparison
       // using bcrypt or similar library
-      const correctPw = await models.User.isCorrectPassword(password);
+      const correctPw = await user.isCorrectPassword(password);
       
       if (!correctPw) {
-        throw new AuthenticationError('Incorrect credentials');
+        console.log("incorrect password: ", correctPw);
+        throw new Error('Incorrect credentials');
       }
       
       const token = signToken(user);
@@ -72,11 +73,11 @@ const resolvers = {
     
     saveMood: async (_parent: unknown, { moodData }: { moodData: MoodInput }, context: AuthContext) => {
       if (!context.user) {
-        throw new AuthenticationError('You need to be logged in!');
+        throw new Error('You need to be logged in!');
       }
       
       try {
-        const updatedUser = await models.User.findByIdAndUpdate(
+        const updatedUser = await User.findByIdAndUpdate(
           context.user._id,
           { 
             $push: { 
@@ -99,11 +100,11 @@ const resolvers = {
     
     removeMood: async (_parent: unknown, { moodId }: { moodId: string }, context: AuthContext) => {
       if (!context.user) {
-        throw new AuthenticationError('You need to be logged in!');
+        throw new Error('You need to be logged in!');
       }
       
       try {
-        const updatedUser = await models.User.findByIdAndUpdate(
+        const updatedUser = await User.findByIdAndUpdate(
           context.user._id,
           { $pull: { savedMoods: { _id: moodId } } },
           { new: true }
@@ -117,19 +118,5 @@ const resolvers = {
     }
   }
 };
-
-// JWT configuration
-const secret = 'secret_key'; // Replace with your actual secret key
-const expiration = '2h';
-
-function signToken(user: User) {
-  const payload = {
-    _id: user._id,
-    username: user.email,
-    email: user.email
-  };
-  
-  return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
-}
 
 export default resolvers;

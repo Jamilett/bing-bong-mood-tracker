@@ -10,6 +10,7 @@ interface MoodInput {
 }
 
 interface UserInput {
+  username: string;
   email: string;
   password: string;
 }
@@ -49,7 +50,7 @@ const mutations = {
 
   // Register new user mutation
   addUser: async (_: any, { input }: { input: UserInput }) => {
-    const { email, password } = input;
+    const { username, email, password } = input;
     
     // Check if user already exists by email only
     const existingUser = await User.findOne({ email });
@@ -58,13 +59,14 @@ const mutations = {
       throw new Error('User with this email already exists');
     }
     
-    // Hash password
-    const hashedPassword = await bcrypt.hash(password, 10);
+    // Hash password --> Because we are doing in through the MODEL
+//    const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create user
     const user = await User.create({
+      username,
       email,
-      password: hashedPassword,
+      password,
     });
 
     // Generate JWT token

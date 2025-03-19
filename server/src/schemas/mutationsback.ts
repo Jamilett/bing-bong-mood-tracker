@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { User } from '../models'; // Adjust import path as needed
+import { User } from '../models/index.js'; // Adjust import path as needed
 
 // Define TypeScript interfaces
 interface MoodInput {
@@ -10,6 +10,7 @@ interface MoodInput {
 }
 
 interface UserInput {
+  username: string;
   email: string;
   password: string;
 }
@@ -48,8 +49,9 @@ const mutations = {
   },
 
   // Register new user mutation
+  // Method name | (parent, args, context, info)
   addUser: async (_: any, { input }: { input: UserInput }) => {
-    const { email, password } = input;
+    const { username, email, password } = input;
     
     // Check if user already exists by email only
     const existingUser = await User.findOne({ email });
@@ -58,15 +60,16 @@ const mutations = {
       throw new Error('User with this email already exists');
     }
     
-    // Hash password
-    const hashedPassword = await bcrypt.hash(password, 10);
+    // Hash password --> Because we are doing in through the MODEL
+  //  const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create user
     const user = await User.create({
+      username,
       email,
-      password: hashedPassword,
+      password
     });
-
+    console.log("New User:¨", user);
     // Generate JWT token
     const token = jwt.sign(
       { userId: user._id, email: user.email }, 

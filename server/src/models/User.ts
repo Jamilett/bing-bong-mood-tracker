@@ -1,9 +1,10 @@
 import { Schema, model, Document, ObjectId } from 'mongoose';
-
+import bcrypt from 'bcrypt';
 interface IUser extends Document {
     username: string;
     email: string;
-    password: ObjectId;
+    password: string;
+    isCorrectPassword: (password: string) => Promise<boolean>;
     feelings: ObjectId[];
 }
 
@@ -21,14 +22,18 @@ const userSchema = new Schema<IUser>(
             required: true,
             //TODO: check for valid mail
         },
-        password:{
+        password: {
+            type: String,
+            required: true,
+        },
+/*        password:{
                 type: Schema.Types.ObjectId,
                 ref: 'password',
-            },
+            },*/
         feelings: [
             {
                 type: Schema.Types.ObjectId,
-                ref: 'feelings_user',
+                ref: 'feelings_catalog',
             },
         ],
     },
@@ -40,6 +45,22 @@ const userSchema = new Schema<IUser>(
     }
 );
 
+// set up pre-save middleware to create password
+userSchema.pre<IUser>('save', async function (next) {
+    if (this.isNew || this.isModified('password')) {
+        const saltRounds = 10;
+        this.password = await bcrypt.hash(this.password, saltRounds);
+    }
+
+    next();
+});
+
+  // compare the incoming password with the hashed password
+userSchema.methods.isCorrectPassword = async function (password: string): Promise<boolean> {
+    return await bcrypt.compare(password, this.password);
+};
+
+
 //** Create a virtual property `fullName` that gets and sets the user's full name
 // userSchema
  //   .virtual('friendCount')
@@ -48,8 +69,10 @@ const userSchema = new Schema<IUser>(
     //    return `${this.friends.length}`;
    // })
 // */
-   
+
 // Initialize our User model
-const User = model('user', userSchema);
+const User = model<IUser>('user', userSchema);
 
 export default User;
+
+
