@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import BingBongImage from "../assets/bingbongimage.png";
 import BingBongLogo from "../assets/BingBongLogo.svg";
-import { useNavigate } from "react-router-dom";
+
+//import Auth from '../utils/auth.js';
 
 function Login() {
   const navigate = useNavigate();

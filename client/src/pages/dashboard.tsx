@@ -9,6 +9,7 @@ import History from '../components/history';
 function Dashboard() {
 
 
+
     return (
         <>
         <main className='bg-purple-50 min-h-screen'>
