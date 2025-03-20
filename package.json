@@ -7,13 +7,23 @@
     "dev": "concurrently \"npm start --prefix client\" \"npm start --prefix server\"",
     "start": "node server/dist/index.js",
     "build": "npm run build --prefix client && npm run build --prefix server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "cd server && npm install  && cd ../client && npm install"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "autoprefixer": "^10.4.21",
     "concurrently": "^9.1.2",
     "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.13.4",
+    "apexcharts": "^4.5.0",
+    "flowbite-react": "^0.10.2",
+    "graphql": "^16.10.0",
+    "graphql-tag": "^2.12.6",
+    "react-apexcharts": "^1.7.0"
   }
 }
