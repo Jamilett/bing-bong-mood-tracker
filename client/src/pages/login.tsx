@@ -4,6 +4,7 @@ import { LOGIN_USER } from '../../utils/mutations.js';
 //import Auth from '../utils/auth.js';
 import { User } from '../models/User.js';
 import { ChangeEvent, FormEvent } from 'react';
+import { Link } from 'react-router-dom';
 
 function Login() {
   const [userFormData, setUserFormData] = useState<User>({ email: '', password: '' });
@@ -44,6 +45,10 @@ function Login() {
     const { token } = data.login;
     console.log("Token:", token);
  //     Auth.login(token);   // Currently We do not have this code (function)
+      // we need to store the token in local storage
+      localStorage.setItem('id_token', token);
+      // we need to redirect the user to the home page
+      window.location.assign('/');
     } catch (err) {
       console.error(err);
     //  setShowAlert(true);
@@ -111,9 +116,9 @@ function Login() {
                   </button>
                   <p className="text-sm font-light text-gray-500 ">
                     Don’t have an account yet?{" "}
-                    <a href="#" className="font-medium text-purple-600 hover:underline ">
+                    <Link to="/signup" className="font-medium text-purple-600 hover:underline ">
                       Sign up
-                    </a>
+                    </Link>
                   </p>
                 </form>
               </div>

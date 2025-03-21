@@ -20,10 +20,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.13.4",
-    "apexcharts": "^4.5.0",
-    "flowbite-react": "^0.10.2",
     "graphql": "^16.10.0",
-    "graphql-tag": "^2.12.6",
-    "react-apexcharts": "^1.7.0"
+    "graphql-tag": "^2.12.6"
   }
 }
