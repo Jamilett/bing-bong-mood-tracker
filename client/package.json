@@ -11,8 +11,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "apexcharts": "^3.36.0",
     "flowbite": "^3.1.2",
     "react": "^19.0.0",
+    "react-apexcharts": "^1.7.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.3.0"
   },
