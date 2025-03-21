@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "concurrently \"npm start --prefix client\" \"npm start --prefix server\"",
-    "start": "node server/dist/index.js",
+    "start": "npm run client:build && npm run server",
+    "client:build": "cd client && npm run build",
+    "server": "cd server && npm start",
     "build": "npm run build --prefix client && npm run build --prefix server",
     "test": "echo \"Error: no test specified\" && exit 1",
     "install": "cd server && npm install  && cd ../client && npm install"
