@@ -48,7 +48,7 @@ function Login() {
       // we need to store the token in local storage
       localStorage.setItem('id_token', token);
       // we need to redirect the user to the home page
-      window.location.assign('/');
+      window.location.assign('/dashboard');
     } catch (err) {
       console.error(err);
     //  setShowAlert(true);
