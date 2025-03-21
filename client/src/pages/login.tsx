@@ -1,4 +1,70 @@
+import { useState } from 'react';
+import { User } from '../models/User.js';
+//import { useNavigate } from "react-router-dom";
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../../utils/mutations.js';
+import BingBongImage from "../assets/bingbongimage.png";
+import { ChangeEvent, FormEvent } from 'react';
+//import BingBongLogo from "../assets/BingBongLogo.svg";
+
+//import Auth from '../utils/auth.js';
+import { Link } from 'react-router-dom';
+
 function Login() {
+  const [userFormData, setUserFormData] = useState<User>({ email: '', password: '' });
+
+  const [login, { error }] = useMutation(LOGIN_USER);
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setUserFormData({ ...userFormData, [name]: value });
+  };
+
+  const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    // check if form has everything (as per react-bootstrap docs)
+    /*
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+    //  event.stopPropagation();
+    }
+    */
+
+    try {
+      //  const response = await login(userFormData);  // Currently We do not have this code (function)
+
+      const { data } = await login({
+        variables: { ...userFormData }
+      });
+
+      console.log("Data: ", data);
+
+
+    const { token } = data.login;
+    console.log("Token:", token);
+ //     Auth.login(token);   // Currently We do not have this code (function)
+      // we need to store the token in local storage
+      localStorage.setItem('id_token', token);
+      // we need to redirect the user to the home page
+      window.location.assign('/dashboard');
+    } catch (err) {
+      console.error(err);
+    //  setShowAlert(true);
+    }
+/*
+    setUserFormData({
+      email: '',
+      password: ''
+    });
+    */
+  };
+
+    if(error) {
+      console.log("Error: ", error);
+    }
+
     return (
       <div>
         <section className="bg-purple-50 ">
@@ -12,7 +78,7 @@ function Login() {
                 <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
                   Sign in to your account
                 </h1>
-                <form className="space-y-4 md:space-y-8" action="#">
+                <form className="space-y-4 md:space-y-8" onSubmit={handleFormSubmit}>
                   <div>
                     <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 ">
                       Your email
@@ -21,6 +87,7 @@ function Login() {
                       type="email"
                       name="email"
                       id="email"
+                      onChange={handleInputChange}
                       className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5      "
                       placeholder="name@email.com"
                       required
@@ -34,6 +101,7 @@ function Login() {
                       type="password"
                       name="password"
                       id="password"
+                      onChange={handleInputChange}
                       placeholder="••••••••"
                       className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5      "
                       required
@@ -48,17 +116,21 @@ function Login() {
                   </button>
                   <p className="text-sm font-light text-gray-500 ">
                     Don’t have an account yet?{" "}
-                    <a href="#" className="font-medium text-purple-600 hover:underline ">
+                    <Link to="/signup" className="font-medium text-purple-600 hover:underline ">
                       Sign up
-                    </a>
+                    </Link>
                   </p>
                 </form>
               </div>
             </div>
           </div>
+        {/* Imagen del personaje - Solo en desktop */}
+        <div className="hidden md:flex md:w-1/2 justify-center hover:animate-bounce">
+          <img src={BingBongImage} alt="Bing Bong" className="w-3/4 max-w-lg" />
+        </div>
         </section>
-      </div>
-    );
-  }
-  
-  export default Login;
+        </div>
+  );
+}
+
+export default Login;

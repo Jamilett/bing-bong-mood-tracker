@@ -5,9 +5,13 @@
   "main": "index.js",
   "scripts": {
     "dev": "concurrently \"npm start --prefix client\" \"npm start --prefix server\"",
-    "start": "node server/dist/index.js",
+    "start:dev": "concurrently \"npm run server:dev\" \"wait-on tcp:3001 && npm run client:dev\"",
+    "start": "npm run client:build && npm run server",
+    "client:build": "cd client && npm run build",
+    "server": "cd server && npm start",
     "build": "npm run build --prefix client && npm run build --prefix server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "cd server && npm install  && cd ../client && npm install"
   },
   "keywords": [],
   "author": "",
@@ -15,13 +19,16 @@
   "devDependencies": {
     "autoprefixer": "^10.4.21",
     "concurrently": "^9.1.2",
-    "postcss": "^8.5.3",
-    "tailwindcss": "^4.0.13",
     "typescript": "^5.8.2"
   },
   "dependencies": {
-    "apexcharts": "^4.5.0",
-    "flowbite-react": "^0.10.2",
-    "react-apexcharts": "^1.7.0"
+    "@apollo/client": "^3.13.4",
+    "graphql": "^16.10.0",
+    "graphql-tag": "^2.12.6",
+    "install": "^0.13.0",
+    "npm": "^11.2.0",
+    "react-apexcharts": "^1.7.0",
+    "react-router-dom": "^7.4.0"
+
   }
 }

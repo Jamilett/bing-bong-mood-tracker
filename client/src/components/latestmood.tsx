@@ -1,26 +1,45 @@
-// import React, { useEffect, useState } from 'react';
+import Happy from "../assets/Happy.svg";
 
-function LatestMood () {
-//   const [latestMood, setLatestMood] = useState<Mood | null>(null);
-
-//   useEffect(() => {
-//     fetch('/api/mood/latest')
-//       .then(response => response.json())
-//       .then(data => setLatestMood(data));
-//   }, []);
-
+function LatestMood() {
   return (
-    <div className="w-full">
-        
-        <a href="#" className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow-sm w-full">
-            <img className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="/docs/images/blog/image-4.jpg" alt="" />
-            <div className="flex flex-col justify-between p-4 leading-normal">
-                <span className="w-fit bg-teal-100 text-teal-800 text-xs font-medium mb-3 px-2.5 py-0.5 rounded-full">Default</span>
-                <h5 className="mb-5 text-2xl font-bold tracking-tight text-gray-900 white:text-white">Latest Mood</h5>
-                <p className="mb-3 font-normal text-gray-500 white:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-            </div>
-        </a>
+    <div className="w-full bg-white rounded-lg shadow-sm p-6 flex flex-col justify-between h-full">
+      {/* Header */}
+      <h5 className="text-lg font-bold text-gray-900 mb-4">Latest Mood</h5>
 
+      {/* Contenedor principal con disposición en flex */}
+      <div className="flex items-start gap-6">
+        {/* Icono del estado de ánimo */}
+        <div className="flex items-center justify-center bg-cyan-100 rounded-full">
+          <img
+            src={Happy}
+            alt="Happy Face"
+            className="w-35 h-35 object-contain"
+          />
+        </div>
+
+        {/* Contenedor de texto */}
+        <div className="flex-1">
+          {/* Etiqueta del estado de ánimo */}
+          <span className="bg-teal-100 text-teal-600 text-xs px-3 py-1 rounded-lg">
+            Happy
+          </span>
+
+          {/* Título del journal */}
+          <h6 className="text-base font-semibold mt-3">Journal entry:</h6>
+
+          {/* Descripción */}
+          <p className="text-gray-600 text-sm mt-3 text-justify">
+            Today was a good day, I walked my dog in the park and played with
+            him with the ball. My sleep was great, I felt like new when I stood
+            up.
+          </p>
+        </div>
+
+        {/* Fecha alineada a la derecha */}
+        <div className="flex justify-end mt-6">
+          <span className="text-gray-400 text-sm">11/03/2025</span>
+        </div>
+      </div>
     </div>
   );
 }
