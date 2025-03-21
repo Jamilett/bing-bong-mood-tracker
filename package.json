@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "concurrently \"npm start --prefix client\" \"npm start --prefix server\"",
+    "start:dev": "concurrently \"npm run server:dev\" \"wait-on tcp:3001 && npm run client:dev\"",
     "start": "npm run client:build && npm run server",
     "client:build": "cd client && npm run build",
     "server": "cd server && npm start",
