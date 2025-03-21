@@ -8,10 +8,10 @@ import { Link } from "react-router-dom";
 
 function Signup() {
     const navigate = useNavigate();
-}
+//}
 
 
-function CreateAccount() {
+//function CreateAccount() {
   // If we are dealing with a FORM, we need to keep track of the form data
   // We can use the useState hook to do this
   const [userFormData, setUserFormData] = useState<UserInput>({ username: '', email: '', password: '' });
