@@ -1,8 +1,15 @@
+import logo from '../assets/BingBongLogo.svg';
+import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import { UserInput } from "../models/User.js";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../../utils/mutations.js";
 import { Link } from "react-router-dom";
+
+function Signup() {
+    const navigate = useNavigate();
+}
+
 
 function CreateAccount() {
   // If we are dealing with a FORM, we need to keep track of the form data
@@ -56,16 +63,18 @@ function CreateAccount() {
 
     return (
       <div>
-        <section className="bg-purple-50 ">
+        <section className="bg-purple-50">
           <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen md:h-screen lg:py-0">
-            <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 ">
-              <img className="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo" />
+            <a href="#" onClick={() => navigate('/landing')} className="flex items-center mb-6 text-2xl font-semibold text-gray-900 ">
+              <img className="w-8 h-8 mr-2" src={logo} alt="logo" />
               BingBong
             </a>
             <div className="w-full bg-white rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0  ">
               <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                 <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
-                  Sign up for an account
+
+                  Create an account
+
                 </h1>
                 <form className="space-y-4 md:space-y-8" onSubmit={handleFormSubmit}>
                   <div>
@@ -113,15 +122,16 @@ function CreateAccount() {
 
                   <button
                     type="submit"
-                    className="w-full text-white bg-purple-600 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                    className="w-full text-white bg-purple-600 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:cursor-pointer"
                   >
-                    Sign in
+                    Create account
                   </button>
                   <p className="text-sm font-light text-gray-500 ">
                     Already have an account?{" "}
-                    <Link to="/login" className="font-medium text-purple-600 hover:underline ">
+                    <Link to="/login" className="font-medium text-purple-600 hover:underline cursor-pointer">
                       Login
                     </Link>
+
                   </p>
                 </form>
               </div>
@@ -132,4 +142,4 @@ function CreateAccount() {
     );
   }
   
-  export default CreateAccount;
+  export default Signup;
