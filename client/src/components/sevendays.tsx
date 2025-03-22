@@ -33,6 +33,7 @@ const Sevendays: React.FC = () => {
     },
     legend: {
       position: 'bottom',
+      show: false,
       fontFamily: 'Inter, sans-serif',
     },
     dataLabels: {
@@ -59,13 +60,21 @@ const Sevendays: React.FC = () => {
 
   return (
     <div className="w-full bg-white rounded-lg shadow-sm p-4 md:p-6">
-      <h5 className="text-xl font-bold text-gray-900 mb-3">Last Month</h5>
+      <h5 className="text-xl font-bold text-gray-900 mb-3">Last Week</h5>
       <ReactApexChart
         options={chartOptions}
         series={Object.values(moodData)}
         type="donut"
         height={320}
       />
+      <div className="flex flex-wrap justify-center mt-4 gap-4 text-gray-500">
+        {moods.map((mood) => (
+          <div key={mood} className="flex items-center gap-2 text-sm">
+            <span className="w-3 h-3 rounded-full" style={{ backgroundColor: moodColors[mood] }}></span>
+            <span>{mood}</span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
