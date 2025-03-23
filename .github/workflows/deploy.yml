@@ -1,0 +1,21 @@
+name: Deploy
+
+on:
+    push:
+      branches: [feature/render3]
+    pull_request:
+      branches:
+        - feature/render3
+       
+jobs:
+    deployer:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+
+        - name: Deploy
+          if: github.ref == 'refs/heads/feature/render3'
+          env:
+            DEPLOY_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+          run: |
+            curl "$DEPLOY_URL"
