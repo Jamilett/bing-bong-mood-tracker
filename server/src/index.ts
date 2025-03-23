@@ -36,13 +36,15 @@ async function startServer() {
 
   //const __filename = fileURLToPath(import.meta.url);
   //const __dirname = path.dirname(__filename);
-
+  console.log(__dirname);
+  console.log(path.join(__dirname, '../../client/dist'));
+  console.log(path.join(__dirname, '../../client/dist/index.html'));
   // if we're in production, serve client/build as static assets
   if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../../client/dist')));
 
     app.get('*', (_req: Request, res: Response) => {
-      res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+      res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
     });
   }
 
