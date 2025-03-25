@@ -50,6 +50,8 @@ const typeDefs = gql `
         me: User
         me_info: User
         get_feeling: [Feelings_Catalog]
+        get_feeling_happy: [Feelings_Catalog]
+        get_latest_feeling: Feelings_Catalog
     }
 
     type Mutation {

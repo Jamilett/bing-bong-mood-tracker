@@ -10,5 +10,12 @@ export const GET_MOODS = gql`
         createdAt
         comment
     }
+
+    query Get_latest_feeling {
+    get_latest_feeling {
+          feeling_name
+          comment
+          createdAt
+        }
     }
-    `;
+}`;
