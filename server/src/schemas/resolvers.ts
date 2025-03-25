@@ -18,7 +18,7 @@ interface UserInput {
   password: string;
 }
 
-export interface Feelings_catalog {
+export interface Feelings_Catalog {
     feeling?: string;
     feeling_name?: string;
     createdAt: Date;
@@ -50,7 +50,16 @@ const resolvers = {
     },
 
     get_feeling: async (_parent: any, _args: unknown) => {
-      return Feelings_Catalog.find({});
+
+      try {
+        const results = await Feelings_Catalog.find({})
+        console.log("Found:¨", results)
+        return results;
+      } catch (error) {
+        console.log("Error: ", error)
+      }
+
+      return Feelings_Catalog.find({})
     },
 
   },
