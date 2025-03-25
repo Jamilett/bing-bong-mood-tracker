@@ -12,6 +12,14 @@ export const LOGIN_USER = gql`
     }
 `;
 
+export const GET_QUOTE = gql`
+  query {
+    getQuote {
+      text
+      author
+    }
+  }
+`;
 
 export const ADD_USER = gql`
     mutation addUser($input: UserInput!) {
