@@ -86,7 +86,7 @@ function Moodlog() {
                     </div>
                     
                     {saveSuccess && (
-                      <div className="text-green-600 font-medium mb-4">
+                      <div className="text-purple-600 font-medium mb-4">
                         Mood and journal entry saved successfully!
                       </div>
                     )}
