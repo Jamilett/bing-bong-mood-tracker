@@ -63,15 +63,18 @@ const resolvers = {
     throw new Error('Could not authenticate user.');
     },
 
-    get_feeling: async (_parent: any, _args: unknown) => {
-      return Feelings_Catalog.find({}).populate({
-        path: 'user',
-        model: 'user',
-      })
-        .exec();
+    get_feeling: async (_parent: any, _args: unknown, context: AuthContext) => {
+      if (context.user) {
+        return Feelings_Catalog.find({ user: context.user._id }).populate({
+          path: 'user',
+          model: 'user',
+        })
+          .exec();
+      }
+      throw new Error('Could not authenticate user.');
     },
-
   },
+  
   Mutation: {
     addUser: async (_parent: unknown, { input }: { input: UserInput }) => {
       console.log("input: ", input);

@@ -59,6 +59,5 @@ const typeDefs = gql `
         salvaMood(moodData: AgregaMood!): Feelings_Catalog
         removeMood(moodId: String!): User
     }
-
 `;
 export default typeDefs;
