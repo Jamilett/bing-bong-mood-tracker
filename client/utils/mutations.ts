@@ -25,6 +25,19 @@ export const ADD_USER = gql`
     }
 `;
 
+export const ADD_MOOD = gql`
+    mutation Mutation($moodData: AgregaMood!) {
+        salvaMood(moodData: $moodData) {
+            feeling_name
+            comment
+        user {
+                _id
+            }
+        }
+    }
+`;
+
+
 /*
 fetch('/api/users/login', {
     method: 'POST',

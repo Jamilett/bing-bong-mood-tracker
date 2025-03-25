@@ -5,6 +5,7 @@ interface IFeelings_catalog extends Document {
     feeling_name: string;
     createdAt: Date;
     comment: string;
+    user: ObjectId;
 }
 
 // Schema to create User model
@@ -12,12 +13,12 @@ const feelingsCatalogSchema = new Schema<IFeelings_catalog>(
     {
         feeling: {
             type: String,
-            unique: true,
+            //unique: true,
             //required: true,
         },
         feeling_name: {
             type: String,
-            unique: true,
+            //unique: true,
             //required: true,
         },
         createdAt: {
@@ -28,6 +29,10 @@ const feelingsCatalogSchema = new Schema<IFeelings_catalog>(
             type: String,
             maxlength: 280,
         },
+        user: {
+            type: Schema.Types.ObjectId,
+            required: true,
+        }
     }
 );
 

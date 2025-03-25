@@ -1,28 +1,30 @@
 import { User, Feelings_Catalog } from "../models/index.js";
 import { signToken } from "../utils/index.js";
+import mongoose from "mongoose";
 // Define interfaces for TypeScript type safety
 export interface User {
   _id: any;
   email: string;
   password: string;
-  savedMoods?: any[];
+  feelings?: any[];
   isCorrectPassword: (password: string) => Promise<boolean>;
 }
 interface MoodInput {
-  thoughtText: string;
-  title: string;
-  description: string;
+  feeling_name: string;
+  comment: string;
 }
+
 interface UserInput {
   email: string;
   password: string;
 }
 
-export interface Feelings_catalog {
+export interface Feelings_Catalog {
     feeling?: string;
     feeling_name?: string;
     createdAt: Date;
     comment: string;
+    user: any;
 }
 
 // Type for authentication context
@@ -44,13 +46,29 @@ const resolvers = {
   
     me_info: async (_parent: any, _args: unknown, context: AuthContext) => {
         if (context.user) {
-          return User.findOne({ _id: context.user._id }).populate('feelings');
+
+          const resp = await User.findOne({ _id: context.user._id }).populate({
+            path: 'feelings',
+            model: 'feelings_catalog',
+          })
+            .exec();
+          console.log("respuesta: " + resp);
+
+          return await User.findOne({ _id: context.user._id }).populate({
+            path: 'feelings',
+            model: 'feelings_catalog',
+          })
+            .exec();
         }
     throw new Error('Could not authenticate user.');
     },
 
     get_feeling: async (_parent: any, _args: unknown) => {
-      return Feelings_Catalog.find({});
+      return Feelings_Catalog.find({}).populate({
+        path: 'user',
+        model: 'user',
+      })
+        .exec();
     },
 
   },
@@ -115,7 +133,23 @@ const resolvers = {
         throw new Error('Failed to save mood');
       }
     },
-    
+  
+    salvaMood: async (_parent: unknown, { moodData }: { moodData: MoodInput }, context: AuthContext) => {
+      if (!context.user) {
+        throw new Error('You need to be logged in!');
+      }
+
+      try {
+        const addFeeling = await Feelings_Catalog.create({ ...moodData, user: new mongoose.Types.ObjectId(context.user._id) }) as Feelings_Catalog;
+        return addFeeling;
+        
+      } catch (error) {
+        console.error('Error saving mood:', error);
+        throw new Error('Failed to save mood');
+      }
+    },
+
+
     removeMood: async (_parent: unknown, { moodId }: { moodId: string }, context: AuthContext) => {
       if (!context.user) {
         throw new Error('You need to be logged in!');

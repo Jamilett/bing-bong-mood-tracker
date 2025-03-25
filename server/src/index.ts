@@ -10,7 +10,7 @@ import db from "./config/connection.js";
 import path from 'node:path';
 import type { Request, Response } from 'express';
 import { fileURLToPath } from 'node:url';
-
+import { authenticateToken } from './utils/index.js';
 
 // Cargar variables de entorno
 dotenv.config();
@@ -32,7 +32,9 @@ async function startServer() {
   await server.start();
   // make sure DB is started before starting the server
   await db;
-  app.use("/graphql", express.json(), expressMiddleware(server));
+  app.use("/graphql", express.json(), expressMiddleware(server, {
+    context: authenticateToken as any
+  }));
 
   // if we're in production, serve client/build as static assets
   if (process.env.NODE_ENV === 'production') {
