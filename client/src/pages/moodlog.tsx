@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { ADD_MOOD } from '../../utils/mutations';
 import Sidebar from '../components/sidebar'
 import Happy from '../assets/Happy.svg'
 import Angry from '../assets/Angry.svg'
@@ -8,6 +10,9 @@ import Fear from '../assets/Fear.svg'
 
 function Moodlog() {
     const [selectedMood, setSelectedMood] = useState<string | null>(null);
+    const [journalEntry, setJournalEntry] = useState('');
+    const [saveSuccess, setSaveSuccess] = useState(false);
+    const [saveMood] = useMutation(ADD_MOOD);
 
     const moods = [
         { name: "Happy", color: "bg-teal-100 text-teal-400", image: Happy},
@@ -16,6 +21,27 @@ function Moodlog() {
         { name: "Sad", color: "bg-blue-100 text-blue-800", image: Sad},
         { name: "Fear", color: "bg-purple-100 text-purple-600", image: Fear},
       ];
+    
+      const handleSaveMood = async () => {
+        if (!selectedMood || !journalEntry) return;
+
+        try {
+            await saveMood({
+                variables: {
+                    moodData: {
+                        feeling_name: selectedMood,
+                        comment: journalEntry,
+                    },
+                },
+            });
+            setSelectedMood(null);
+            setJournalEntry('');
+            setSaveSuccess(true);
+            setTimeout(() => setSaveSuccess(false), 3000);
+        } catch (err) {
+            console.error('Error saving mood:', err);
+        }
+    };
 
     return (
         <>
@@ -49,11 +75,27 @@ function Moodlog() {
 
                     <div className='w-full max-w-md mt-16 mb-4 md:mb-12 lg:mb-12'>
                         <label htmlFor="message" className="block mb-2 text-sm text-xl font-medium text-gray-900">Journal</label>
-                        <textarea id="message" rows={4} className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-purple-600 focus:border-purple-600" placeholder="Write your thoughts here..."></textarea>
+                        <textarea
+                          id="message"
+                          rows={4}
+                          value={journalEntry}
+                          onChange={(e) => setJournalEntry(e.target.value)}
+                          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-purple-600 focus:border-purple-600"
+                          placeholder="Write your thoughts here..."
+                        ></textarea>
                     </div>
-
+                    
+                    {saveSuccess && (
+                      <div className="text-green-600 font-medium mb-4">
+                        Mood and journal entry saved successfully!
+                      </div>
+                    )}
                     <div className="flex flex-col justify-center items-center mt-auto w-full max-w-md mb-12">
-                        <button type="button" className="hover:cursor-pointer md:w-sm w-full text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                    <button
+                          type="button"
+                          onClick={handleSaveMood}
+                          className="hover:cursor-pointer md:w-sm w-full text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                        >
                             Save daily mood
                         </button>
                     </div> 
