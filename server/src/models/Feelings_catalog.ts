@@ -13,12 +13,12 @@ const feelingsCatalogSchema = new Schema<IFeelings_catalog>(
         feeling: {
             type: String,
             unique: true,
-            required: true,
+            //required: true,
         },
         feeling_name: {
             type: String,
             unique: true,
-            required: true,
+            //required: true,
         },
         createdAt: {
             type: Date,

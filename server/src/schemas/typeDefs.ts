@@ -6,6 +6,14 @@ const typeDefs = gql `
         email: String
     }
 
+    type Feelings_Catalog {
+        _id: ID
+        feeling: String
+        feeling_name: String
+        createdAt: String
+        comment: String
+    }
+
     input UserInput {
         username: String
         email: String
@@ -33,6 +41,8 @@ const typeDefs = gql `
         
     type Query {
         me: User
+        me_info: User
+        get_feeling: Feelings_Catalog
     }
 
     type Mutation {

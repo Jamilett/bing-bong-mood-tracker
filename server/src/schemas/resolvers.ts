@@ -1,4 +1,4 @@
-import {User} from "../models/index.js";
+import { User, Feelings_Catalog } from "../models/index.js";
 import { signToken } from "../utils/index.js";
 // Define interfaces for TypeScript type safety
 export interface User {
@@ -18,6 +18,13 @@ interface UserInput {
   password: string;
 }
 
+export interface Feelings_catalog {
+    feeling?: string;
+    feeling_name?: string;
+    createdAt: Date;
+    comment: string;
+}
+
 // Type for authentication context
 interface AuthContext {
   user?: {
@@ -33,9 +40,20 @@ const resolvers = {
         return User.findById(context.user._id);
       }
       throw new Error('Not logged in');
-    }
-  },
+    },
   
+    me_info: async (_parent: any, _args: unknown, context: AuthContext) => {
+        if (context.user) {
+          return User.findOne({ _id: context.user._id }).populate('feelings');
+        }
+    throw new Error('Could not authenticate user.');
+    },
+
+    get_feeling: async (_parent: any, _args: unknown) => {
+      return Feelings_Catalog.find({});
+    },
+
+  },
   Mutation: {
     addUser: async (_parent: unknown, { input }: { input: UserInput }) => {
       console.log("input: ", input);

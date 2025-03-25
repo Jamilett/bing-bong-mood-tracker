@@ -120,7 +120,7 @@ const mutations = {
       const updatedUser = await User.findByIdAndUpdate(
         context.user._id,
         { $pull: { savedMoods: { _id: moodId } } },
-        { new: true }
+        { new: true } 
       );
 
       if (!updatedUser) {
