@@ -35,6 +35,14 @@ interface AuthContext {
   };
 }
 
+const sevenDaysAgo = new Date();
+sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+
+
+const thirtyDaysAgo = new Date();
+thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+
 const resolvers = {
   Query: {
     me: async (_parent: unknown, _args: unknown, context: AuthContext) => {
@@ -84,7 +92,9 @@ const resolvers = {
       }
       throw new Error('Could not authenticate user.');
     },
-
+    ////////////
+    //GET UNIVERSAL COUNTERS
+    ////////////
     get_happy_count: async (_parent: any, _args: unknown, context: AuthContext) => {
       if (context.user) {
         return Feelings_Catalog.countDocuments({ user: context.user._id, feeling_name: "Happy" })
@@ -124,6 +134,86 @@ const resolvers = {
       }
       throw new Error('Could not authenticate user.');
     },
+
+    ///////////
+    ///////////
+    ///////////
+
+    //////////
+    // GET LAST WEEK COUNTERS
+    /////////
+    get_happy_count_week: async (_parent: any, _args: unknown, context: AuthContext) => {
+      if (context.user) {
+        return Feelings_Catalog.countDocuments({ user: context.user._id, feeling_name: "Happy", createdAt: { $gte: sevenDaysAgo } }).exec();
+      } throw new Error('Could not authenticate user.');
+    },
+
+    get_angry_count_week: async (_parent: any, _args: unknown, context: AuthContext) => {
+      if (context.user) {
+        return Feelings_Catalog.countDocuments({ user: context.user._id, feeling_name: "Angry", createdAt: { $gte: sevenDaysAgo } }).exec();
+      } throw new Error('Could not authenticate user.');
+    },
+
+    get_anxious_count_week: async (_parent: any, _args: unknown, context: AuthContext) => {
+      if (context.user) {
+        return Feelings_Catalog.countDocuments({ user: context.user._id, feeling_name: "Anxious", createdAt: { $gte: sevenDaysAgo } }).exec();
+      } throw new Error('Could not authenticate user.');
+    },
+
+    get_sad_count_week: async (_parent: any, _args: unknown, context: AuthContext) => {
+      if (context.user) {
+        return Feelings_Catalog.countDocuments({ user: context.user._id, feeling_name: "Sad", createdAt: { $gte: sevenDaysAgo } }).exec();
+      }  throw new Error('Could not authenticate user.');
+    },
+
+    get_fear_count_week: async (_parent: any, _args: unknown, context: AuthContext) => {
+      if (context.user) {
+        return Feelings_Catalog.countDocuments({ user: context.user._id, feeling_name: "Fear", createdAt: { $gte: sevenDaysAgo } }).exec();
+      } throw new Error('Could not authenticate user.');
+    },
+
+    ///////////
+    ///////////
+    ///////////
+
+
+    //////////
+    // GET LAST MONTH COUNTERS
+    /////////
+    get_happy_count_month: async (_parent: any, _args: unknown, context: AuthContext) => {
+      if (context.user) {
+        return Feelings_Catalog.countDocuments({ user: context.user._id, feeling_name: "Happy", createdAt: { $gte: thirtyDaysAgo } }).exec();
+      } throw new Error('Could not authenticate user.');
+    },
+
+    get_angry_count_month: async (_parent: any, _args: unknown, context: AuthContext) => {
+      if (context.user) {
+        return Feelings_Catalog.countDocuments({ user: context.user._id, feeling_name: "Angry", createdAt: { $gte: thirtyDaysAgo } }).exec();
+      } throw new Error('Could not authenticate user.');
+    },
+
+    get_anxious_count_month: async (_parent: any, _args: unknown, context: AuthContext) => {
+      if (context.user) {
+        return Feelings_Catalog.countDocuments({ user: context.user._id, feeling_name: "Anxious", createdAt: { $gte: thirtyDaysAgo } }).exec();
+      } throw new Error('Could not authenticate user.');
+    },
+
+    get_sad_count_month: async (_parent: any, _args: unknown, context: AuthContext) => {
+      if (context.user) {
+        return Feelings_Catalog.countDocuments({ user: context.user._id, feeling_name: "Sad", createdAt: { $gte: thirtyDaysAgo } }).exec();
+      } throw new Error('Could not authenticate user.');
+    },
+
+    get_fear_count_month: async (_parent: any, _args: unknown, context: AuthContext) => {
+      if (context.user) {
+        return Feelings_Catalog.countDocuments({ user: context.user._id, feeling_name: "Fear", createdAt: { $gte: thirtyDaysAgo } }).exec();
+      } throw new Error('Could not authenticate user.');
+    },
+
+    ///////////
+    ///////////
+    ///////////
+
 
     get_latest_feeling: async (_parent: any, _args: unknown, context: AuthContext) => {
       if (context.user) {

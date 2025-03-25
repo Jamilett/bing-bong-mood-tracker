@@ -22,6 +22,37 @@ export const QUERY_LATEST_FEELING = gql`
     }
 }`;
 
+export const QUERY_MOOD_COUNTER_ALL = gql`
+query Get_Total_Mood_Counters {
+  get_happy_count
+  get_angry_count
+  get_anxious_count
+  get_sad_count
+  get_fear_count
+}
+}`;
+
+export const QUERY_MOOD_COUNTER_WEEK = gql`
+query Get_Mood_Weekly {
+  get_happy_count_week
+  get_angry_count_week
+  get_anxious_count_week
+  get_sad_count_week
+  get_fear_count_week
+}
+}`;
+
+export const QUERY_MOOD_COUNTER_MONTH = gql`
+query Get_Mood_Monthly {
+  get_happy_count_month
+  get_angry_count_month
+  get_anxious_count_month
+  get_sad_count_month
+  get_fear_count_month
+}
+}`;
+
+
 export const HAPPY_COUNT = gql`
     query get_happy_count {
         get_happy_count

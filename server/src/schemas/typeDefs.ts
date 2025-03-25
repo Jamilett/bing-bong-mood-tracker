@@ -56,6 +56,16 @@ const typeDefs = gql `
         get_anxious_count: Int
         get_sad_count: Int
         get_fear_count: Int
+        get_happy_count_week: Int
+        get_angry_count_week: Int
+        get_anxious_count_week: Int
+        get_sad_count_week: Int
+        get_fear_count_week: Int
+        get_happy_count_month: Int
+        get_angry_count_month: Int
+        get_anxious_count_month: Int
+        get_sad_count_month: Int
+        get_fear_count_month: Int
         get_latest_feeling: Feelings_Catalog
     }
 
