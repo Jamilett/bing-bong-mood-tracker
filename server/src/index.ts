@@ -34,9 +34,6 @@ async function startServer() {
   await db;
   app.use("/graphql", express.json(), expressMiddleware(server));
 
-  //const __filename = fileURLToPath(import.meta.url);
-  //const __dirname = path.dirname(__filename);
-
   // if we're in production, serve client/build as static assets
   if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../../client/dist')));
