@@ -10,7 +10,9 @@ export const GET_MOODS = gql`
         createdAt
         comment
     }
+}`;
 
+    export const QUERY_LATEST_FEELING = gql`
     query Get_latest_feeling {
     get_latest_feeling {
           feeling_name
