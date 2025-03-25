@@ -5,14 +5,15 @@ import logo from '../assets/BingBongLogo.svg';
 function Sidebar() {
 
 const navigate = useNavigate();
+
 const logout = async (event:any) => {
     event.preventDefault();
     localStorage.removeItem('id_token');
     window.location.assign('/login');
 };
+
+
 return (
-
-
 
     <div>
                 

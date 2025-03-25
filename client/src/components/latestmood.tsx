@@ -53,7 +53,7 @@ function LatestMood() {
           <h6 className="text-base font-semibold mt-3">Journal entry:</h6>
 
           {/* Descripción */}
-          <p className="text-gray-600 text-sm mt-3 text-justify">
+          <p className="text-gray-600 text-md mt-3 text-justify">
             {latestMood.journal}
           </p>
         </div>
