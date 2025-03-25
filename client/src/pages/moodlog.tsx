@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Sidebar from '../components/sidebar'
 import Happy from '../assets/Happy.svg'
 import Angry from '../assets/Angry.svg'
@@ -6,6 +7,8 @@ import Sad from '../assets/Sad.svg'
 import Fear from '../assets/Fear.svg'
 
 function Moodlog() {
+    const [selectedMood, setSelectedMood] = useState<string | null>(null);
+
     const moods = [
         { name: "Happy", color: "bg-teal-100 text-teal-400", image: Happy},
         { name: "Angry", color: "bg-pink-100 text-pink-500", image: Angry},
@@ -30,9 +33,14 @@ function Moodlog() {
                     <div className='text-purple-600 text-3xl font-semibold mt-2 mb-12 md:mt-6 lg:mt-auto'> How do you feel today?</div>
 
                     {/* Mood Selection Grid */}    
-                    <div className="grid gap-2 lg:gap-8 md:gap-4 grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
+                    <div className="grid gap-4 lg:gap-8 md:gap-4 grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
                         {moods.map((mood) => (
-                            <div key={mood.name} className={`p-4 w-[120px] flex flex-col gap-1 items-center justify-center ${mood.color} rounded-lg shadow-md hover:rotate-10 cursor-pointer`}>
+                                 <div
+                                    key={mood.name}                    
+                                    className={`p-4 w-[120px] flex flex-col gap-1 items-center justify-center ${mood.color} rounded-lg shadow-md hover:rotate-10 cursor-pointer 
+                                    ${selectedMood === mood.name ? `border-3 border-current ${mood.color.split(' ')[1]}` : ''}`}                    
+                                    onClick={() => setSelectedMood(selectedMood === mood.name ? null : mood.name)}                                        
+                                >                                         
                                 <span className="text-base font-semibold">{mood.name}</span>
                                 <img key={mood.name} src={mood.image} alt={mood.name} className="w-16 h-16 object-contain" />
                             </div>
