@@ -85,6 +85,46 @@ const resolvers = {
       throw new Error('Could not authenticate user.');
     },
 
+    get_happy_count: async (_parent: any, _args: unknown, context: AuthContext) => {
+      if (context.user) {
+        return Feelings_Catalog.countDocuments({ user: context.user._id, feeling_name: "Happy" })
+          .exec();
+      }
+      throw new Error('Could not authenticate user.');
+    },
+
+    get_angry_count: async (_parent: any, _args: unknown, context: AuthContext) => {
+      if (context.user) {
+        return Feelings_Catalog.countDocuments({ user: context.user._id, feeling_name: "Angry" })
+          .exec();
+      }
+      throw new Error('Could not authenticate user.');
+    },
+
+    get_anxious_count: async (_parent: any, _args: unknown, context: AuthContext) => {
+      if (context.user) {
+        return Feelings_Catalog.countDocuments({ user: context.user._id, feeling_name: "Anxious" })
+          .exec();
+      }
+      throw new Error('Could not authenticate user.');
+    },
+
+    get_sad_count: async (_parent: any, _args: unknown, context: AuthContext) => {
+      if (context.user) {
+        return Feelings_Catalog.countDocuments({ user: context.user._id, feeling_name: "Sad" })
+          .exec();
+      }
+      throw new Error('Could not authenticate user.');
+    },
+
+    get_fear_count: async (_parent: any, _args: unknown, context: AuthContext) => {
+      if (context.user) {
+        return Feelings_Catalog.countDocuments({ user: context.user._id, feeling_name: "Fear" })
+          .exec();
+      }
+      throw new Error('Could not authenticate user.');
+    },
+
     get_latest_feeling: async (_parent: any, _args: unknown, context: AuthContext) => {
       if (context.user) {
         return Feelings_Catalog.findOne({ user: context.user._id }).sort({ createdAt: -1 }).populate({
