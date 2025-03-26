@@ -53,6 +53,16 @@ export const QUERY_MOOD_COUNTER_MONTH = gql`
   }
 `;
 
+export const GET_TEN_COMMENTS = gql`
+  query Get_ten_comments {
+    get_ten_comments {
+      comment
+      createdAt
+      feeling_name
+    }
+  }
+`;
+
 export const HAPPY_COUNT = gql`
   query get_happy_count {
     get_happy_count
