@@ -1,4 +1,4 @@
-//import { useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { GET_TEN_COMMENTS } from '../../utils/queries';
 import Angry from "../assets/Angry.svg";
 import Anxious from "../assets/Anxious.svg";
