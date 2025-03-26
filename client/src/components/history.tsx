@@ -32,7 +32,13 @@ function History() {
         {comments.map((comment: any, index: any) => (
           <div key={index} className="flex items-center justify-between py-4 border-b border-gray-200 gap-4">
             <div className="flex items-center gap-8 md:gap-16">
-              <span className="text-gray-500 text-sm w-20">{new Date(comment.createdAt).toLocaleDateString()}</span>
+              <span className="text-gray-500 text-sm w-20">{
+                new Date(parseInt(comment.createdAt)).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "2-digit",
+                  day: "2-digit",
+                })
+                }</span>
               <img
                 src={moodImages[comment.feeling_name] || Happy} // Default to Happy if no match
                 alt={comment.feeling_name}

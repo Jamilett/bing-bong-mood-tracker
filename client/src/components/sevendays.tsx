@@ -9,7 +9,6 @@ const Sevendays: React.FC = () => {
 
   const moods = ["Happy", "Angry", "Anxious", "Sad", "Fear"];
 
-  // Valores predeterminados en caso de que no haya datos aún
   const moodData: Record<string, number> = {
     Happy: data?.get_happy_count_week || 0,
     Angry: data?.get_angry_count_week || 0,
