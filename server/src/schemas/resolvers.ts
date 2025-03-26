@@ -82,6 +82,17 @@ const resolvers = {
       throw new Error('Could not authenticate user.');
     },
 
+    get_ten_comments: async (_parent: any, _args: unknown, context: AuthContext) => {
+      if (context.user) {
+        return Feelings_Catalog.find({ user: context.user._id }).sort({ createdAt: -1 }).limit(10).populate({
+          path: 'user',
+          model: 'user',
+        })
+          .exec();
+      }
+      throw new Error('Could not authenticate user.');
+    },
+
     get_feeling_happy: async (_parent: any, _args: unknown, context: AuthContext) => {
       if (context.user) {
         return Feelings_Catalog.find({ user: context.user._id, feeling_name: "Happy"}).populate({

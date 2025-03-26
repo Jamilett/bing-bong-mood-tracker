@@ -51,6 +51,7 @@ const typeDefs = gql `
         me_info: User
         get_feeling: [Feelings_Catalog]
         get_feeling_happy: [Feelings_Catalog]
+        get_ten_comments: [Feelings_Catalog]
         get_happy_count: Int
         get_angry_count: Int
         get_anxious_count: Int
