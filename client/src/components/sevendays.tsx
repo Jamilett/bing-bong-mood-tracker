@@ -1,15 +1,21 @@
+import { useQuery } from '@apollo/client';
+import type { ApexOptions } from 'apexcharts';
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
-import type { ApexOptions } from 'apexcharts';
+import { QUERY_MOOD_COUNTER_WEEK } from '../../utils/queries';
 
 const Sevendays: React.FC = () => {
+  const { loading, error, data } = useQuery(QUERY_MOOD_COUNTER_WEEK);
+
   const moods = ["Happy", "Angry", "Anxious", "Sad", "Fear"];
+
+  // Valores predeterminados en caso de que no haya datos aún
   const moodData: Record<string, number> = {
-    Happy: 13,
-    Angry: 5,
-    Anxious: 4,
-    Sad: 3,
-    Fear: 5,
+    Happy: data?.get_happy_count_week || 0,
+    Angry: data?.get_angry_count_week || 0,
+    Anxious: data?.get_anxious_count_week || 0,
+    Sad: data?.get_sad_count_week || 0,
+    Fear: data?.get_fear_count_week || 0,
   };
 
   const moodColors: Record<string, string> = {
@@ -57,6 +63,9 @@ const Sevendays: React.FC = () => {
       },
     },
   };
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
 
   return (
     <div className="w-full bg-white rounded-lg shadow-sm p-4 md:p-6">
