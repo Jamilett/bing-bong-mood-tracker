@@ -1,7 +1,7 @@
-import React from "react";
+//import React from "react";
 import Happy from "../assets/Happy.svg"; // Replace with actual paths
 import Sad from "../assets/Sad.svg";
-import Angry from "../assets/angry.svg";
+import Angry from "../assets/Angry.svg";
 import Anxious from "../assets/Anxious.svg";
 import Fear from "../assets/Fear.svg";
 
