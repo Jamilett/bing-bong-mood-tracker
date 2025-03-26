@@ -22,7 +22,7 @@
 
 - You can also scroll down to learn more about its usage, our purpose, and information about the developers.
 
-![image](https://github.com/user-attachments/assets/e2132c9a-c039-4fc6-a654-447f7981d07a)
+![image](https://github.com/user-attachments/assets/b85a2350-30da-4c14-bd92-35877d2123f7)
 
 - After entering your username, email, and password, you will be redirected to your dashboard. Once you start adding data, you will be able to view your mood distribution percentages for the past week, the past month, and overall.
 
