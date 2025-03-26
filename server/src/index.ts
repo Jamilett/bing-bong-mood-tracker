@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 import type { Request, Response } from 'express';
 import express from "express";
 import path from 'node:path';
-import db from "./config/connection.js";
+import { authenticateToken } from './utils/index.js';import db from "./config/connection.js";
 import { mergedResolvers, mergedTypeDefs } from "./schemas/index.js";
 
 
@@ -32,7 +32,9 @@ async function startServer() {
   await server.start();
   // make sure DB is started before starting the server
   await db;
-  app.use("/graphql", express.json(), expressMiddleware(server));
+  app.use("/graphql", express.json(), expressMiddleware(server, {
+    context: authenticateToken as any
+  }));
 
   // if we're in production, serve client/build as static assets
   if (process.env.NODE_ENV === 'production') {

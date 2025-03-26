@@ -48,7 +48,7 @@ function Sidebar() {
         <div className="flex flex-col h-full px-3 py-4 overflow-y-auto">
           <div
             onClick={() => {
-              navigate("/landing");
+              navigate("/dashboard");
               closeSidebar();
             }}
             className="flex items-center space-x-3 mb-12 hover:cursor-pointer"

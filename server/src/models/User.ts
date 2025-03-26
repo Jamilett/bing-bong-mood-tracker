@@ -1,5 +1,6 @@
 import { Schema, model, Document, ObjectId } from 'mongoose';
 import bcrypt from 'bcrypt';
+
 interface IUser extends Document {
     username: string;
     email: string;
@@ -33,7 +34,7 @@ const userSchema = new Schema<IUser>(
         feelings: [
             {
                 type: Schema.Types.ObjectId,
-                ref: 'feelings_catalog',
+                ref: 'Feelings_Catalog',
             },
         ],
     },
