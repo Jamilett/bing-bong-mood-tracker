@@ -1,15 +1,12 @@
-import express from "express";
-import cors from "cors";
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
-import { quoteResolvers, quoteTypeDefs } from "./schemas/quoteSchema";
-import mongoose from "mongoose";
+import cors from "cors";
 import dotenv from "dotenv";
-import { typeDefs, resolvers } from "./schemas/index.js";
-import db from "./config/connection.js";
-import path from 'node:path';
 import type { Request, Response } from 'express';
-import { fileURLToPath } from 'node:url';
+import express from "express";
+import path from 'node:path';
+import { authenticateToken } from './utils/index.js';import db from "./config/connection.js";
+import { mergedResolvers, mergedTypeDefs } from "./schemas/index.js";
 
 
 // Cargar variables de entorno
@@ -26,23 +23,25 @@ app.use(cors());
 //   .catch((error) => console.error("MongoDB Connection Error:", error));
 
 // Crear servidor Apollo
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({
+  typeDefs: mergedTypeDefs,
+  resolvers: mergedResolvers
+});
 
 async function startServer() {
   await server.start();
   // make sure DB is started before starting the server
   await db;
-  app.use("/graphql", express.json(), expressMiddleware(server));
-
-  //const __filename = fileURLToPath(import.meta.url);
-  //const __dirname = path.dirname(__filename);
+  app.use("/graphql", express.json(), expressMiddleware(server, {
+    context: authenticateToken as any
+  }));
 
   // if we're in production, serve client/build as static assets
   if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../../client/dist')));
 
     app.get('*', (_req: Request, res: Response) => {
-      res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+      res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
     });
   }
 

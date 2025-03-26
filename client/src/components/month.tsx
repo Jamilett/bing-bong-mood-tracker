@@ -1,16 +1,31 @@
 import React from 'react';
+import { useQuery } from '@apollo/client';
 import ReactApexChart from 'react-apexcharts';
 import type { ApexOptions } from 'apexcharts';
+import { QUERY_MOOD_COUNTER_MONTH } from '../../utils/queries';
 
 const Month: React.FC = () => {
+  const { loading, error, data } = useQuery(QUERY_MOOD_COUNTER_MONTH);
+
   const moods = ["Happy", "Angry", "Anxious", "Sad", "Fear"];
-  const moodData: Record<string, number> = {
-    Happy: 13,
-    Angry: 5,
-    Anxious: 4,
-    Sad: 3,
-    Fear: 5,
+
+  const defaultMoodData: Record<string, number> = {
+    Happy: 0,
+    Angry: 0,
+    Anxious: 0,
+    Sad: 0,
+    Fear: 0,
   };
+
+  const moodData = data
+    ? {
+        Happy: data.get_happy_count_month,
+        Angry: data.get_angry_count_month,
+        Anxious: data.get_anxious_count_month,
+        Sad: data.get_sad_count_month,
+        Fear: data.get_fear_count_month,
+      }
+    : defaultMoodData;
 
   const moodColors: Record<string, string> = {
     Happy: "#16BDCA",
@@ -33,6 +48,7 @@ const Month: React.FC = () => {
     },
     legend: {
       position: 'bottom',
+      show: false,
       fontFamily: 'Inter, sans-serif',
     },
     dataLabels: {
@@ -57,6 +73,9 @@ const Month: React.FC = () => {
     },
   };
 
+  if (loading) return <p className="text-center text-gray-500">Loading...</p>;
+  if (error) return <p className="text-center text-red-500">Error: {error.message}</p>;
+
   return (
     <div className="w-full bg-white rounded-lg shadow-sm p-4 md:p-6">
       <h5 className="text-xl font-bold text-gray-900 mb-3">Last Month</h5>
@@ -66,6 +85,14 @@ const Month: React.FC = () => {
         type="donut"
         height={320}
       />
+      <div className="flex flex-wrap justify-center mt-4 gap-4 text-gray-500">
+        {moods.map((mood) => (
+          <div key={mood} className="flex items-center gap-2 text-sm">
+            <span className="w-3 h-3 rounded-full" style={{ backgroundColor: moodColors[mood] }}></span>
+            <span>{mood}</span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

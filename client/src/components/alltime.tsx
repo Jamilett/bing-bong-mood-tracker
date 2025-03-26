@@ -1,16 +1,13 @@
+import { useQuery } from '@apollo/client';
+import type { ApexOptions } from 'apexcharts';
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
-import type { ApexOptions } from 'apexcharts';
+import { QUERY_MOOD_COUNTER_ALL } from '../../utils/queries';
 
 const Alltime: React.FC = () => {
+  const { loading, error, data } = useQuery(QUERY_MOOD_COUNTER_ALL);
+
   const moods = ["Happy", "Angry", "Anxious", "Sad", "Fear"];
-  const moodData: Record<string, number> = {
-    Happy: 13,
-    Angry: 5,
-    Anxious: 4,
-    Sad: 3,
-    Fear: 5,
-  };
 
   const moodColors: Record<string, string> = {
     Happy: "#16BDCA",
@@ -18,6 +15,19 @@ const Alltime: React.FC = () => {
     Anxious: "#8DA2FB",
     Sad: "#1E429F",
     Fear: "#7E3AF2",
+  };
+
+  // If data is still loading or there's an error, show appropriate feedback
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+
+  // Get mood counts from data
+  const moodData = {
+    Happy: data.get_happy_count,
+    Angry: data.get_angry_count,
+    Anxious: data.get_anxious_count,
+    Sad: data.get_sad_count,
+    Fear: data.get_fear_count,
   };
 
   const chartOptions: ApexOptions = {
@@ -33,6 +43,7 @@ const Alltime: React.FC = () => {
     },
     legend: {
       position: 'bottom',
+      show: false,
       fontFamily: 'Inter, sans-serif',
     },
     dataLabels: {
@@ -59,13 +70,21 @@ const Alltime: React.FC = () => {
 
   return (
     <div className="w-full bg-white rounded-lg shadow-sm p-4 md:p-6">
-      <h5 className="text-xl font-bold text-gray-900 mb-3">Last Month</h5>
+      <h5 className="text-xl font-bold text-gray-900 mb-3">All Time</h5>
       <ReactApexChart
         options={chartOptions}
         series={Object.values(moodData)}
         type="donut"
         height={320}
       />
+      <div className="flex flex-wrap justify-center mt-4 gap-4 text-gray-500">
+        {moods.map((mood) => (
+          <div key={mood} className="flex items-center gap-2 text-sm">
+            <span className="w-3 h-3 rounded-full" style={{ backgroundColor: moodColors[mood] }}></span>
+            <span>{mood}</span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

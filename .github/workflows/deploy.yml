@@ -1,0 +1,21 @@
+name: Deploy
+
+on:
+    push:
+      branches: [master]
+    pull_request:
+      branches:
+        - master
+       
+jobs:
+    deployer:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+
+        - name: Deploy
+          if: github.ref == 'refs/heads/master'
+          env:
+            DEPLOY_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+          run: |
+            curl "$DEPLOY_URL"

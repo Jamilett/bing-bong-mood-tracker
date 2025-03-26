@@ -12,6 +12,14 @@ export const LOGIN_USER = gql`
     }
 `;
 
+export const GET_QUOTE = gql`
+  query {
+    getQuote {
+      text
+      author
+    }
+  }
+`;
 
 export const ADD_USER = gql`
     mutation addUser($input: UserInput!) {
@@ -25,12 +33,14 @@ export const ADD_USER = gql`
     }
 `;
 
-/*
-fetch('/api/users/login', {
-    method: 'POST',
-    headers: {  
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ email, password }),
-})
-    */
+export const ADD_MOOD = gql`
+    mutation Mutation($moodData: AgregaMood!) {
+        salvaMood(moodData: $moodData) {
+            feeling_name
+            comment
+        user {
+                _id
+            }
+        }
+    }
+`;
