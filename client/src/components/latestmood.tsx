@@ -1,20 +1,10 @@
-import { useQuery, gql } from "@apollo/client";
-import Happy from "../assets/Happy.svg";
+import { useQuery } from "@apollo/client";
+import { QUERY_LATEST_FEELING } from '../../utils/queries';
 import Angry from "../assets/Angry.svg";
 import Anxious from "../assets/Anxious.svg";
-import Sad from "../assets/Sad.svg";
 import Fear from "../assets/Fear.svg";
-
-// GraphQL query to fetch the latest feeling
-export const QUERY_LATEST_FEELING = gql`
-  query Get_latest_feeling {
-    get_latest_feeling {
-      feeling_name
-      comment
-      createdAt
-    }
-  }
-`;
+import Happy from "../assets/Happy.svg";
+import Sad from "../assets/Sad.svg";
 
 function LatestMood() {
   const { data, loading, error } = useQuery(QUERY_LATEST_FEELING);
