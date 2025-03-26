@@ -17,14 +17,12 @@ function Dashboard() {
         <section className="flex flex-col p-4 gap-4 sm:ml-64">
           <h2 className="text-2xl font-bold text-gray-900">Dashboard</h2>
 
-          {/* Secciones en una sola columna en móviles */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Sevendays />
             <Month />
             <Alltime />
           </div>
 
-          {/* Secciones en móvil 1 por fila y 2 columnas en desktop */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <MoodCounter />
             <LatestMood />
