@@ -1,6 +1,13 @@
 import logo from '../assets/BingBongLogo.svg';
 import dashboard from '../assets/DashboardMockup.png';
 import { useNavigate } from 'react-router-dom';
+import alberto from '../assets/alberto.jpeg';
+import ale from "../assets/Alessandro.jpeg";
+import fab from "../assets/Fabian.jpeg";
+import mike from "../assets/Mike.jpeg";
+import Carlos from "../assets/Carlos.jpeg";
+import jam from "../assets/Jam.jpeg";
+import gera from "../assets/gerardo.jpeg"
 
 function Landing() {
     const navigate = useNavigate();
@@ -111,98 +118,98 @@ function Landing() {
       </div> 
       <div className="grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           <div className="text-center text-gray-500 light:text-gray-400">
-              <img className="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="Bonnie Avatar"/>
+              <img className="mx-auto mb-4 w-36 h-36 rounded-full" src={mike} alt="Mike Aliaga"/>
               <h3 className="mb-1 text-2xl font-bold tracking-tight text-purple-600 light:text-white">
-                  <a href="#">Mike Aliaga</a>
+                  <a href="https://github.com/mikealiaga">Miguel Aliaga</a>
               </h3>
               <p>UX/UI, Front end Dev </p>
               <ul className="flex justify-center mt-4 space-x-4">
                   <li>
-                      <a href="#" className="text-gray-900 hover:text-gray-900 light:hover:text-white light:text-gray-300">
+                      <a href="https://github.com/mikealiaga" className="text-gray-900 hover:text-gray-900 light:hover:text-white light:text-gray-300">
                           <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" /></svg>
                       </a>
                   </li>
               </ul>
           </div>
           <div className="text-center text-gray-500 light:text-gray-400">
-              <img className="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="Bonnie Avatar"/>
+              <img className="mx-auto mb-4 w-36 h-36 rounded-full" src={ale} alt="Alessandro"/>
               <h3 className="mb-1 text-2xl font-bold tracking-tight text-purple-600 light:text-white">
-                  <a href="#">Alessandro</a>
+                  <a href="https://github.com/AlessandroJuleo">Alessandro Lopez</a>
               </h3>
               <p>Front end Dev </p>
               <ul className="flex justify-center mt-4 space-x-4">
                   <li>
-                      <a href="#" className="text-gray-900 hover:text-gray-900 light:hover:text-white light:text-gray-300">
+                      <a href="https://github.com/AlessandroJuleo" className="text-gray-900 hover:text-gray-900 light:hover:text-white light:text-gray-300">
                           <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" /></svg>
                       </a>
                   </li>
               </ul>
           </div>
           <div className="text-center text-gray-500 light:text-gray-400">
-              <img className="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="Bonnie Avatar"/>
+              <img className="mx-auto mb-4 w-36 h-36 rounded-full" src={Carlos} alt="Carlos Malpica"/>
               <h3 className="mb-1 text-2xl font-bold tracking-tight text-purple-600 light:text-white">
-                  <a href="#">Carlos Malpica</a>
+                  <a href="https://github.com/Crls-mlpc">Carlos Malpica</a>
               </h3>
               <p>Front end Dev </p>
               <ul className="flex justify-center mt-4 space-x-4">
                   <li>
-                      <a href="#" className="text-gray-900 hover:text-gray-900 light:hover:text-white light:text-gray-300">
+                      <a href="https://github.com/Crls-mlpc" className="text-gray-900 hover:text-gray-900 light:hover:text-white light:text-gray-300">
                           <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" /></svg>
                       </a>
                   </li>
               </ul>
           </div>
           <div className="text-center text-gray-500 light:text-gray-400">
-              <img className="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="Bonnie Avatar"/>
+              <img className="mx-auto mb-4 w-36 h-36 rounded-full" src={jam} alt="Bonnie Avatar"/>
               <h3 className="mb-1 text-2xl font-bold tracking-tight text-purple-600 light:text-white">
-                  <a href="#">Jam</a>
+                  <a href="https://github.com/Jamilett">Jamilett Samperio</a>
               </h3>
               <p>Back end Dev </p>
               <ul className="flex justify-center mt-4 space-x-4">
                   <li>
-                      <a href="#" className="text-gray-900 hover:text-gray-900 light:hover:text-white light:text-gray-300">
+                      <a href="https://github.com/Jamilett" className="text-gray-900 hover:text-gray-900 light:hover:text-white light:text-gray-300">
                           <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" /></svg>
                       </a>
                   </li>
               </ul>
           </div>
           <div className="text-center text-gray-500 light:text-gray-400">
-              <img className="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="Bonnie Avatar"/>
+              <img className="mx-auto mb-4 w-36 h-36 rounded-full" src={fab} alt="Fabian Saldierna"/>
               <h3 className="mb-1 text-2xl font-bold tracking-tight text-purple-600 light:text-white">
-                  <a href="#">Fabian</a>
+                  <a href="https://github.com/FabianSaldierna">Fabian Saldierna</a>
               </h3>
               <p>Back end Dev </p>
               <ul className="flex justify-center mt-4 space-x-4">
                   <li>
-                      <a href="#" className="text-gray-900 hover:text-gray-900 light:hover:text-white light:text-gray-300">
+                      <a href="https://github.com/FabianSaldierna" className="text-gray-900 hover:text-gray-900 light:hover:text-white light:text-gray-300">
                           <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" /></svg>
                       </a>
                   </li>
               </ul>
           </div>
           <div className="text-center text-gray-500 light:text-gray-400">
-              <img className="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="Bonnie Avatar"/>
+              <img className="mx-auto mb-4 w-36 h-36 rounded-full" src={alberto} alt="alberto"/>
               <h3 className="mb-1 text-2xl font-bold tracking-tight text-purple-600 light:text-white">
-                  <a href="#">Alberto</a>
+                  <a href="https://github.com/Albert-Cifer">Alberto De León</a>
               </h3>
               <p>Back end Dev </p>
               <ul className="flex justify-center mt-4 space-x-4">
                   <li>
-                      <a href="#" className="text-gray-900 hover:text-gray-900 light:hover:text-white light:text-gray-300">
+                      <a href="https://github.com/Albert-Cifer" className="text-gray-900 hover:text-gray-900 light:hover:text-white light:text-gray-300">
                           <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" /></svg>
                       </a>
                   </li>
               </ul>
           </div>
           <div className="text-center text-gray-500 light:text-gray-400">
-              <img className="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="Bonnie Avatar"/>
+              <img className="mx-auto mb-4 w-36 h-36 rounded-full" src={gera} alt="Gerardo Avendaño"/>
               <h3 className="mb-1 text-2xl font-bold tracking-tight text-purple-600 light:text-white">
-                  <a href="#">Gerardo</a>
+                  <a href="https://github.com/sieke13">Gerardo Avendaño</a>
               </h3>
               <p>Back end Dev </p>
               <ul className="flex justify-center mt-4 space-x-4">
                   <li>
-                      <a href="#" className="text-gray-900 hover:text-gray-900 light:hover:text-white light:text-gray-300">
+                      <a href="https://github.com/sieke13" className="text-gray-900 hover:text-gray-900 light:hover:text-white light:text-gray-300">
                           <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" /></svg>
                       </a>
                   </li>
