@@ -1,3 +1,15 @@
+import { useQuery, gql } from "@apollo/client";
+
+export const QUERY_MOOD_COUNTER_ALL = gql`
+  query Get_Total_Mood_Counters {
+    get_happy_count
+    get_angry_count
+    get_anxious_count
+    get_sad_count
+    get_fear_count
+  }
+}`;
+
 function MoodCounter() {
   const moods = [
     {
